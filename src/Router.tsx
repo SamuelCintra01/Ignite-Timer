@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom'
 
-import { Home } from "./pages/Home";
-import { History } from "./pages/History";
-import { DefaultLayout } from "./layouts/DefaultLayout";
+import { Home } from './pages/Home'
+import { History } from './pages/History'
+import { DefaultLayout } from './layouts/DefaultLayout'
 
 export function Router() {
   return (
@@ -12,5 +12,5 @@ export function Router() {
         <Route path="/history" element={<History />} />
       </Route>
     </Routes>
-  );
+  )
 }
