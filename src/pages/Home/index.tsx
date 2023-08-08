@@ -1,8 +1,8 @@
-import { Play } from "phosphor-react";
+import { Play } from 'phosphor-react'
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as zod from "zod";
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 
 import {
   CountdownContainer,
@@ -12,33 +12,34 @@ import {
   Separator,
   StartCountdownButton,
   TaskInput,
-} from "./styles";
+} from './styles'
 
 const newCycleFormValidationSchema = zod.object({
-  task: zod.string().min(1, "Informe a tarefa"),
+  task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod
     .number()
-    .min(5, "O Ciclo precisa ser de no mínimo 5 minutos.")
-    .max(60, "O Ciclo precisa ser de no máximo 60 minutos."),
-});
+    .min(5, 'O Ciclo precisa ser de no mínimo 5 minutos.')
+    .max(60, 'O Ciclo precisa ser de no máximo 60 minutos.'),
+})
 
-type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>;
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
-  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
-      task: "",
+      task: '',
       minutesAmount: 0,
     },
-  });
+  })
 
   function handleCreateNewCycle(data: NewCycleFormData) {
-    console.log(data);
+    console.log(data)
+    reset()
   }
 
-  const task = watch("task");
-  const isSubmitDisabled = !task;
+  const task = watch('task')
+  const isSubmitDisabled = !task
 
   return (
     <HomeContainer>
@@ -49,7 +50,7 @@ export function Home() {
             id="task"
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
-            {...register("task")}
+            {...register('task')}
           />
 
           <datalist id="task-suggestions">
@@ -67,7 +68,7 @@ export function Home() {
             step={5}
             min={5}
             // max={60}
-            {...register("minutesAmount", { valueAsNumber: true })}
+            {...register('minutesAmount', { valueAsNumber: true })}
           />
 
           <span>minutos.</span>
@@ -87,5 +88,5 @@ export function Home() {
         </StartCountdownButton>
       </form>
     </HomeContainer>
-  );
+  )
 }
