@@ -1,13 +1,13 @@
-import { useContext } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useContext } from "react";
+import { useFormContext } from "react-hook-form";
 
-import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
+import { FormContainer, MinutesAmountInput, TaskInput } from "./styles";
 
-import { CyclesContext } from '../../../../contexts/CyclesContext'
+import { CyclesContext } from "../../../../contexts/CyclesContext";
 
 export function NewCycleForm() {
-  const { activeCycle } = useContext(CyclesContext)
-  const { register } = useFormContext()
+  const { activeCycle } = useContext(CyclesContext);
+  const { register } = useFormContext();
 
   return (
     <FormContainer>
@@ -16,7 +16,7 @@ export function NewCycleForm() {
         id="task"
         list="task-suggestions"
         placeholder="Dê um nome para o seu projeto"
-        {...register('task')}
+        {...register("task")}
         disabled={!!activeCycle}
       />
 
@@ -33,13 +33,13 @@ export function NewCycleForm() {
         id="minutesAmount"
         placeholder="00"
         step={5}
-        min={1}
+        min={5}
         max={60}
-        {...register('minutesAmount', { valueAsNumber: true })}
+        {...register("minutesAmount", { valueAsNumber: true })}
         disabled={!!activeCycle}
       />
 
       <span>minutos.</span>
     </FormContainer>
-  )
+  );
 }
